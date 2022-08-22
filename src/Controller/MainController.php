@@ -7,11 +7,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 
 class MainController extends AbstractController
-
 {
-    /**
-     * @Route ("/", name="main_connexion")
-     */
+    /** * @Route("/", name="main_connexion") */
     public function home(): Response
     {
         return $this->render('main/connexion.html.twig');
