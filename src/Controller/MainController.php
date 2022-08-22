@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 class MainController extends AbstractController
 {
     /** * @Route("/", name="main_connexion") */
-    public function home(): Response
+    public function connexion(): Response
     {
         return $this->render('main/connexion.html.twig');
     }
