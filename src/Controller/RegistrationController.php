@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Participant;
 use App\Form\RegistrationFormType;
-use App\Security\ParticipantAuthentificatorAuthenticator;
+use App\Security\ParticipantAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,12 +12,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
+
 
 class RegistrationController extends AbstractController
 {
-    #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, ParticipantAuthentificatorAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    #[Route('/register', name: 'login')]
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, ParticipantAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
         $user = new Participant();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -41,9 +41,11 @@ class RegistrationController extends AbstractController
                 $authenticator,
                 $request
             );
+
+         //   return $this->redirectToRoute('participant_profil', ['id'=>$participant->getId()]);
         }
 
-        return $this->render('registration/register.html.twig', [
+        return $this->render('main/connexion.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
