@@ -55,6 +55,9 @@ class Participant implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Sortie::class, inversedBy: 'participants')]
     private Collection $inscrit;
 
+    #[ORM\Column(length: 30)]
+    private ?string $pseudo = null;
+
     public function __construct()
     {
         $this->sorties = new ArrayCollection();
@@ -272,6 +275,18 @@ class Participant implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeInscrit(Sortie $inscrit): self
     {
         $this->inscrit->removeElement($inscrit);
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
 
         return $this;
     }
