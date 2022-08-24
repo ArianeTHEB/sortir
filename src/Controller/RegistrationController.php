@@ -16,7 +16,9 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class RegistrationController extends AbstractController
 {
-    #[Route('/register', name: 'login')]
+    /**
+     * @Route("/registration/register", name="login")
+     */
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, ParticipantAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
         $user = new Participant();
@@ -45,7 +47,7 @@ class RegistrationController extends AbstractController
          //   return $this->redirectToRoute('participant_profil', ['id'=>$participant->getId()]);
         }
 
-        return $this->render('main/connexion.html.twig', [
+        return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }

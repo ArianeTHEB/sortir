@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Participant;
+use ContainerBBVx2fY\getCampusRepositoryService;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -14,18 +15,15 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class RegistrationFormType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('email')
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
-            ])
+            ->add('pseudo')
+            ->add('nom')
+            ->add('prenom')
+            ->add('telephone')
+            ->add('campus')
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
@@ -43,10 +41,18 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
+            ->add('agreeTerms', CheckboxType::class, [
+            'mapped' => false,
+            'constraints' => [
+                new IsTrue([
+                    'message' => 'You should agree to our terms.',
+                ]),
+            ],
+        ])
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => Participant::class,
