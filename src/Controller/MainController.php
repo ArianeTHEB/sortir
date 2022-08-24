@@ -16,6 +16,7 @@ class MainController extends AbstractController
     public function connexion(): Response
     {
         return $this->render('sorties/list.html.twig');
+
     }
 
     /**
