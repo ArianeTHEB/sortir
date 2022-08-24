@@ -47,7 +47,7 @@ class Participant implements UserInterface, PasswordAuthenticatedUserInterface
     private ?bool $actif = null;
 
     #[ORM\ManyToOne(inversedBy: 'participants')]
-    private ?Campus $campus = null;
+    private ?Campus $campus;
 
     #[ORM\OneToMany(mappedBy: 'organisateur', targetEntity: Sortie::class, orphanRemoval: true)]
     private Collection $sorties;
