@@ -21,7 +21,7 @@ class MainController extends AbstractController
     /**
      * @Route("/profil", name="main_profil")
      */
-    public function profil(): Response
+    public function profil(EntityManagerInterface $entityManager): Response
     {
         $this->getRepository(Participant::class)->findAll();
 

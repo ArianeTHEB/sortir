@@ -4,12 +4,12 @@ namespace App\Form;
 
 use App\Entity\Campus;
 use App\Entity\Participant;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
@@ -23,7 +23,14 @@ class RegistrationFormType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('telephone')
-            ->add('campus')
+            ->add('campus',EntityType::class,[
+                'class' => Campus::class,
+                'choice_label' => 'nom',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.nom','ASC');
+                }
+            ])
             ->add('administrateur')
             ->add('mot_de_passe', PasswordType::class, [
                 // instead of being set onto the object directly,
