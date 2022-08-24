@@ -2,9 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Participant;
+use App\Repository\ParticipantRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+
 
 class MainController extends AbstractController
 {
@@ -17,9 +21,12 @@ class MainController extends AbstractController
     /**
      * @Route("/profil", name="main_profil")
      */
-    public function profil()
+    public function profil(): Response
     {
+        $this->getRepository(Participant::class)->findAll();
+
         return $this->render('main/profil.html.twig');
     }
+
 
 }
