@@ -25,7 +25,7 @@ class RegistrationFormType extends AbstractType
             ->add('telephone')
             ->add('campus')
             ->add('administrateur')
-            ->add('plainPassword', PasswordType::class, [
+            ->add('mot_de_passe', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
@@ -41,14 +41,6 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-            ])
-            ->add('agreeTerms', CheckboxType::class, [
-            'mapped' => false,
-            'constraints' => [
-                new IsTrue([
-                    'message' => 'You should agree to our terms.',
-                ]),
-            ],
         ])
         ;
     }
