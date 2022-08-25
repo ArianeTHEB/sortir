@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Sortie;
+use App\Entity\Ville;
 use App\Form\CreationSortieFormType;
+use App\Form\LieuType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,10 +18,15 @@ class SortiesController extends AbstractController
     public function ajouter(Request $request, EntityManagerInterface $entityManager): Response
 
     {
-        //création d'une instance de serie
+        //création d'une instance de sortie
         $sortie = new Sortie();
        // $sortie->setDateCreated(new \DateTime());//attribut nécessaire pour envoi bdd mais retiré du form
         $sortieForm = $this -> createForm(CreationSortieFormType::class, $sortie);
+
+        $villes = new Ville();
+        dump($villes);
+        $lieuForm = $this ->createForm(LieuType::class);
+
 
         dump($sortie);//permet de verifier si un objet est hydraté
         $sortieForm -> handleRequest($request);
@@ -30,7 +37,7 @@ class SortiesController extends AbstractController
             $entityManager->flush();
 
             //on crée un message flash pour signaler à l'utilisateur
-            $this->addFlash('success', 'Serie added! Good job.');
+            $this->addFlash('success', 'Sortie créée, bon amusement.');
 
             // on va à présent rediriger pour cela on utilise return
             return $this->redirectToRoute('main_list');
