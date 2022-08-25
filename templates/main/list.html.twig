@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block body %}
+
+    <h3>Filtrer les sorties</h3>
+
+    {{ form_start(filtreListe) }}
+
+    {{ form_widget(filtreListe) }}
+
+    {{ form_end(filtreListe) }}
+    <br>
+
+    <button type="submit"> <a href="#">Creer une sortie</a></button>
+
+{% endblock %}
+

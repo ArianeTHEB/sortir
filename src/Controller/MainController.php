@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Participant;
+use App\Form\ListeSortiesFormType;
 use App\Repository\ParticipantRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,10 +13,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MainController extends AbstractController
 {
-    /** * @Route("/sorties", name="main_connexion") */
+    /** * @Route("/sorties", name="main_list") */
     public function connexion(): Response
     {
-        return $this->render('sorties/list.html.twig');
+        $filtreListe= $this->createForm(ListeSortiesFormType::class);
+
+        return $this->render('main/list.html.twig',['filtreListe'=>$filtreListe->createView()]);
 
     }
 
