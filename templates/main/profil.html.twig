@@ -6,11 +6,15 @@
     <h1>   Mon Profil    </h1>
 
 <div>
-    {{user.nom}}
-    {{participant.nom}}
+
 
 </div>
 
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <p>Email: {{ app.user.email }}</p>
+        <p>{{app.user.nom}}</p>
+        <p>{{app.user.telephone}}</p>
+    {% endif %}
 
 
 

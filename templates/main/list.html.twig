@@ -6,6 +6,15 @@
 
 
 {% block body %}
+    <div>
+
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <p>Date du jour : {{ "now" | date("m/d/Y")}}</p>
+            <p> Participant : {{app.user.prenom}}</p>
+
+        {% endif %}
+
+    </div>
 
     <h3>Filtrer les sorties</h3>
 

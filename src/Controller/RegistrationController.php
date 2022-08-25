@@ -57,12 +57,16 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/profil", name="main_profil")
      */
-    public function profil(ParticipantRepository $participantRepository, EntityManagerInterface $entityManager, Participant $participant): Response
+    public function profil(ParticipantRepository $participantRepository, EntityManagerInterface $entityManager): Response
     {
-        $this->getUser(ParticipantRepository::class);
-        $participant=$participantRepository;
+        //$this->getUser(ParticipantRepository::class);
+        //$participant=$participantRepository;
 
+       // $profil = $participantRepository->findAll();
+        $monprofil= new Participant();
+        //$monprofil ->setEmail(",ke,nfke");
 
+        //dd($profil);
         return $this->render('main/profil.html.twig');
     }
 
