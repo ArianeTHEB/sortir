@@ -17,7 +17,6 @@ class CreationSortieFormType extends AbstractType
         $builder
             ->add('nom')
             ->add('dateHeureDebut')
-
             ->add('dateLimiteInscription')
             ->add('nbInscriptionsMax')
             ->add('duree')

@@ -6,6 +6,9 @@ use App\Entity\Sortie;
 use App\Entity\Ville;
 use App\Form\CreationSortieFormType;
 use App\Form\LieuType;
+use App\Form\ListeSortiesFormType;
+use App\Repository\LieuRepository;
+use App\Repository\VilleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SortiesController extends AbstractController
 {
     #[Route('/creer', name: 'creer_sorties')]
-    public function ajouter(Request $request, EntityManagerInterface $entityManager): Response
+    public function ajouter(Request $request, EntityManagerInterface $entityManager, VilleRepository $villeRepository): Response
 
     {
         //création d'une instance de sortie
@@ -23,7 +26,7 @@ class SortiesController extends AbstractController
        // $sortie->setDateCreated(new \DateTime());//attribut nécessaire pour envoi bdd mais retiré du form
         $sortieForm = $this -> createForm(CreationSortieFormType::class, $sortie);
 
-        $villes = new Ville();
+        $villes = $villeRepository->findAll();
         dump($villes);
         $lieuForm = $this ->createForm(LieuType::class);
 
@@ -45,7 +48,9 @@ class SortiesController extends AbstractController
 
         //passage à twig pour déclencher l'affichage du formulaire
         return $this->render('sorties/creerSortie.html.twig', [
-            'sortieForm' => $sortieForm ->createView()
+            'sortieForm' => $sortieForm ->createView(),
+            'villes' => $villes,
+            'lieuform' => $lieuForm -> createView()
         ]);
     }
 }
