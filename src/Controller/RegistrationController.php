@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Participant;
 use App\Form\RegistrationFormType;
+use App\Repository\ParticipantRepository;
 use App\Security\ParticipantAuthenticator;
+use ContainerI7xxGxm\getParticipantRepositoryService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,7 +28,9 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
+            $user=$form->getData();
+
+            $this->addFlash('success','votre compte a bien été créé');
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
@@ -36,19 +40,31 @@ class RegistrationController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
-            // do anything else you need here, like send an email
+
 
             return $userAuthenticator->authenticateUser(
                 $user,
                 $authenticator,
                 $request
             );
-
-         //   return $this->redirectToRoute('participant_profil', ['id'=>$participant->getId()]);
         }
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/profil", name="main_profil")
+     */
+    public function profil(ParticipantRepository $participantRepository, EntityManagerInterface $entityManager, Participant $participant): Response
+    {
+        $this->getUser(ParticipantRepository::class);
+        $participant=$participantRepository;
+
+
+        return $this->render('main/profil.html.twig');
+    }
+
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+
 use App\Entity\Participant;
 use App\Form\ListeSortiesFormType;
 use App\Repository\ParticipantRepository;
@@ -25,12 +26,13 @@ class MainController extends AbstractController
     /**
      * @Route("/profil", name="main_profil")
      */
-    public function profil(EntityManagerInterface $entityManager): Response
+    public function profil(ParticipantRepository $participantRepository, EntityManagerInterface $entityManager, Participant $participant): Response
     {
-        $this->getRepository(Participant::class)->findAll();
+$this->getUser(ParticipantRepository::class);
+$participant=$participantRepository;
+
 
         return $this->render('main/profil.html.twig');
     }
-
 
 }

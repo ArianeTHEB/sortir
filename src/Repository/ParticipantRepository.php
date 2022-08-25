@@ -80,4 +80,15 @@ class ParticipantRepository extends ServiceEntityRepository implements PasswordU
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+public function trouverLeProfilUtilisateur()
+{
+    $queryBuilder = $this->createQueryBuilder('p');
+    $queryBuilder
+        ->andWhere('p.id>0');
+    $query=$queryBuilder->getQuery();
+    $results = $query->getResult();
+    return $results;
+}
+
 }
