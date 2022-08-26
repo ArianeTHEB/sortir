@@ -48,11 +48,11 @@ main {
 nav ul {
     display: flex;
     list-style: none;
-    padding-left: revert;
+    padding-left: 0;
 }
 
 nav li {
-    margin-right: 50rem;
+    margin-right: 1rem;
 }
 
 
@@ -82,12 +82,8 @@ nav li {
 
 /*********************** Module 6 Form ******************************/
 
-label,
-input,
-button {
+label {
     display: block;
-    margin-left: 50rem;
-
 }
 
 input,

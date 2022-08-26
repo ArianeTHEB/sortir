@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Sortie{% endblock %}
+
+{% block extrastyles %}
+    <style>
+        h1{
+            text-align: center;
+        }
+        section {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            width: 100%;
+            border: solid;
+        }
+        #gauche{
+            border: solid;
+
+        }
+
+    </style>
+{% endblock %}
+
+{% block body %}
+    <h1>Créer une sortie</h1>
+    <section id="principale">
+        <div id="gauche">
+            {{ include('sortie/_form.html.twig') }}
+        </div>
+        <div id="droit">
+            <p>Campus  {{ app.user.campus.nom }}</p>
+
+    {#        {{ form_start(lieuForm) }}
+            {{ form_widget(lieuForm) }}
+            <button class="btn">{{ button_label|default('Save') }}</button>
+            {{ form_end(lieuForm) }}  #}
+        </div>
+
+    </section>
+    <a href="{{ path('app_sortie_index') }}">retour à la liste</a>
+{% endblock %}
+

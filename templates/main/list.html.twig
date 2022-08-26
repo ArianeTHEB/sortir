@@ -9,8 +9,8 @@
     <div>
 
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <p>Date du jour : {{ "now" | date("m/d/Y")}}</p>
-            <p> Participant : {{app.user.prenom}}</p>
+            <p>Date du jour : {{ "now" | date("d/m/Y")}}</p>
+            <p> Participant : {{app.user.prenom | capitalize}} {{app.user.nom | capitalize | first}}.</p>
 
         {% endif %}
 
@@ -25,7 +25,7 @@
     {{ form_end(filtreListe) }}
     <br>
 
-     <button type="submit"> <a href="{{ path('creer_sorties') }}" title="Creer une sortie">Creer une sortie</a></button>
+     <button> <a href="{{ path('app_sortie_new') }}" title="Creer une sortie">Creer une sortie</a></button>
 
 {% endblock %}
 
