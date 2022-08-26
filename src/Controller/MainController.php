@@ -23,16 +23,18 @@ class MainController extends AbstractController
 
     }
 
+
     /**
      * @Route("/profil", name="main_profil")
      */
-    public function profil(ParticipantRepository $participantRepository, EntityManagerInterface $entityManager, Participant $participant): Response
-    {
-$this->getUser(ParticipantRepository::class);
-$participant=$participantRepository;
+    // public function profil(ParticipantRepository $participantRepository, EntityManagerInterface $entityManager, Participant $participant): Response
+    // {
+    //$this->getUser(ParticipantRepository::class);
+    //$participant=$participantRepository;
+    // return $this->render('main/profil.html.twig');
+    //}
 
 
-        return $this->render('main/profil.html.twig');
-    }
+
 
 }
