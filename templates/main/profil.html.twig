@@ -2,25 +2,63 @@
 
 {% block title %}{{ parent()}} |Profil {% endblock%}
 
+{% block extrastyles %}
+    <style>
+        h1{
+            text-align: center;
+        }
+        section {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            width: 100%;
+
+        }
+        #gauche{
+            display: flex;
+            flex-direction: row;
+            alignment: left;
+            justify-content: left;
+            border: solid;
+
+        }
+        #droit{
+
+        }
+    </style>
+{% endblock %}
+
+
 {% block body%}
 
     <h1>Mon Profil</h1>
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        {{ form_start(registrationForm) }}
-        {{form_widget(registrationForm)}}
+
+    <section id="principale">
+        <div id="gauche">
+            Ma photo de profil
+        </div>
+
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            {{ form_start(registrationForm) }}
+            {{form_widget(registrationForm)}}
 
 
-        <button type="submit" class="btn">
+            <button type="submit" class="btn">
+                Enregistrer
+            </button>
 
-            S'Enregistrer
+            <button type="reset" class="btn">
+                Annuler
+            </button>
+            {{ form_end(registrationForm) }}
+        {% endif %}
 
-        </button>
-        {{ form_end(registrationForm) }}
+        <div id="droit">
+            vide intersidéral
+        </div>
 
+    </section>
 
-
-
-    {% endif %}
 
 
 
