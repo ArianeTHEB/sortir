@@ -41,3 +41,55 @@
     <a href="{{ path('app_sortie_index') }}">retour à la liste</a>
 {% endblock %}
 
+{% block javascripts %}
+    <script>
+        window.onload = () => {
+            //récupération de la ville
+            let villes = document.querySelector('#sortie_villes');
+            console.log(villes);
+            villes.addEventListener('change',function(){
+               let form = this.closest('form');
+               console.log(form);
+               let data = this.name+'='+this.value;
+               console.log(data);
+
+               //envoi en AJAX
+                fetch(form.action, {
+                    method: form.getAttribute('method'),
+                    body: data,
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded;charset:utf-8"
+
+                    }
+                })
+                    .then(response => response.text())
+                    .then(html => {
+                        let content = document.createElement("html");
+                        content.innerHTML = html;
+                        let nouveauSelect = content.querySelector("#sortie_villes");
+                        document.querySelector("#sortie_villes").replaceWith(nouveauSelect);
+                    })
+            });
+        };
+    </script>
+{#
+    <script>
+    let $ville = $('#sortie_villes');
+    $ville.change(function() {
+        let $form = $(this).closest('form');
+        let data = {};
+        data[$ville.attr('name')] = $ville.val();
+        $.ajax({
+            url : $form.attr('action'),
+            type : $form.attr('get|post'),
+            data : data,
+            complete : function(html) {
+                $ville.replaceWith(
+                    $(html.responseText).find('#sortie_villes')
+                );
+
+            }
+        });
+    });
+    </script>}#}
+{% endblock %}

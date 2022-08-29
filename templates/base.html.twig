@@ -13,21 +13,24 @@
         {#ce fichier css permet de gommer les différences entre les navigateurs#}
         <link rel="stylesheet" href="{{asset('css/normalize.css')}}">
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
         {% block extrastyles %}{% endblock %}
+
 
     </head>
 
 
     <body>
 
+
     {#entete du site#}
     <header>
 
-        <h1 class="header-logo">
+            <div>
             <a href="{{ path('app_login') }}" title="Go back to homepage">
-                <img src="{{ asset('img/logo.jpg') }}" alt="Sortir.com Logo">
-            </h1>
+                <img src="{{ asset('img/logo.jpg') }}" alt="Sortir.com Logo"></a>
+            </div>
 
         {% include('include/nav.html.twig')%}
 
@@ -48,6 +51,7 @@
     <footer>
         <div>&copy;  Sortir  {{ "now"|date("Y") }} </div>
     </footer>
-
+    {% block javascripts %}
+    {% endblock %}
     </body>
 </html>

@@ -6,8 +6,7 @@ use App\Entity\Sortie;
 use App\Entity\Ville;
 use App\Form\CreationSortieFormType;
 use App\Form\LieuType;
-use App\Form\ListeSortiesFormType;
-use App\Repository\LieuRepository;
+
 use App\Repository\VilleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,19 +22,19 @@ class SortiesController extends AbstractController
     {
         //création d'une instance de sortie
         $sortie = new Sortie();
-       // $sortie->setDateCreated(new \DateTime());//attribut nécessaire pour envoi bdd mais retiré du form
-        $sortieForm = $this -> createForm(CreationSortieFormType::class, $sortie);
+        // $sortie->setDateCreated(new \DateTime());//attribut nécessaire pour envoi bdd mais retiré du form
+        $sortieForm = $this->createForm(CreationSortieFormType::class, $sortie);
 
         $villes = $villeRepository->findAll();
         dump($villes);
-        $lieuForm = $this ->createForm(LieuType::class);
+        $lieuForm = $this->createForm(LieuType::class);
 
 
         dump($sortie);//permet de verifier si un objet est hydraté
-        $sortieForm -> handleRequest($request);
+        $sortieForm->handleRequest($request);
         dump($sortie);//on voit a present que mon objet serie à des arguments grace à handleRequest
 
-        if($sortieForm->isSubmitted() && $sortieForm->isValid()){
+        if ($sortieForm->isSubmitted() && $sortieForm->isValid()) {
             $entityManager->persist($sortie);
             $entityManager->flush();
 
@@ -48,9 +47,10 @@ class SortiesController extends AbstractController
 
         //passage à twig pour déclencher l'affichage du formulaire
         return $this->render('sorties/creerSortie.html.twig', [
-            'sortieForm' => $sortieForm ->createView(),
+            'sortieForm' => $sortieForm->createView(),
             'villes' => $villes,
-            'lieuform' => $lieuForm -> createView()
+            'lieuform' => $lieuForm->createView()
         ]);
     }
+
 }

@@ -28,15 +28,15 @@ class SortieController extends AbstractController
     #[Route('/new', name: 'app_sortie_new', methods: ['GET', 'POST'])]
     public function new(Request $request, SortieRepository $sortieRepository,LieuRepository $lieuRepository, VilleRepository $villeRepository): Response
     {
-        $villes = $villeRepository->findAll();
+     //   $villes = $villeRepository->findAll();
 
 
-        $lieu= new Lieu();
-        $lieuForm = $this->createForm(LieuType::class, $lieu);
-        $lieuForm->handleRequest($request);
-        if ($lieuForm->isSubmitted() && $lieuForm->isValid()){
-            $lieuRepository->add($lieu,true);
-        }
+     //   $lieu= new Lieu();
+      //  $lieuForm = $this->createForm(LieuType::class, $lieu);
+   //     $lieuForm->handleRequest($request);
+     //   if ($lieuForm->isSubmitted() && $lieuForm->isValid()){
+   //         $lieuRepository->add($lieu,true);
+    //    }
         //code generer par make:crud
         $sortie = new Sortie();
         $form = $this->createForm(SortieType::class, $sortie);
@@ -52,9 +52,9 @@ class SortieController extends AbstractController
         return $this->renderForm('sortie/new.html.twig', [
             'sortie' => $sortie,
             'form' => $form,
-            'listeVilles' => $villes,//ajouter à la mano
-            'lieu' => $lieu,//ajouter à la mano
-            'lieuForm' => $lieuForm//ajouter à la mano
+   //         'listeVilles' => $villes,//ajouter à la mano
+    //        'lieu' => $lieu,//ajouter à la mano
+  //          'lieuForm' => $lieuForm//ajouter à la mano
         ]);
     }
 
