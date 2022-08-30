@@ -25,7 +25,7 @@ class SortieController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_sortie_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'app_sortie_new', methods: ['GET', 'POST','PUT', 'DELETE'])]
     public function new(Request $request, SortieRepository $sortieRepository): Response
     {
 

@@ -10,20 +10,20 @@
         {{ form_end(sortieForm) }}
     </div>
     <div>
-        <label for="ville">VILLE </label>
+    {#    <label for="ville">VILLE </label>
 
         <select name="ville" id="ville">
             {% for ville in villes %}
 
                 <option value="{{ ville.nom }}">{{ ville.nom }}</option>
             {% endfor %}
-        </select>
+        </select>#}
 
-        {{ form_start(lieuform) }}
+ {#       {{ form_start(lieuform) }}
 
         {{ form_widget(lieuform) }}
 
-        {{ form_end(lieuform) }}
+        {{ form_end(lieuform) }}#}
     </div>
 {% endblock %}
 
