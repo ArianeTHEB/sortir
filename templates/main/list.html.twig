@@ -1,17 +1,32 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
+Accueil
+{% endblock %}
+
+{% block extrastyles%}
+    <style>
+        #creer{
+            text-decoration: none;
+        }
+        #utilisateur{
+            display: flex;
+            flex-direction: column;
+            align-content: flex-end;
+        }
+    </style>
 
 {% endblock %}
 
 
 {% block body %}
-    <div>
+    <div id="utilisateur">
 
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <div>
             <p>Date du jour : {{ "now" | date("d/m/Y")}}</p>
             <p> Participant : {{app.user.prenom | capitalize}} {{app.user.nom | capitalize | first}}.</p>
-
+            </div>
         {% endif %}
 
     </div>
@@ -63,11 +78,9 @@
             </tbody>
         </table>
         <br>
-        <div>
-            <a href="{{ path('app_sortie_new') }}">Create new</a>
-        </div>
 
-     <button> <a href="{{ path('creer_sorties') }}" title="Creer une sortie">Creer une sortie</a></button>
+
+     <button> <a href="{{ path('creer_sorties') }}" title="Creer une sortie" id="creer">Creer une sortie</a></button>
 
 {% endblock %}
 

@@ -1,13 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Sortie{% endblock %}
+{% block title %}Modifier une sortie{% endblock %}
+
+{% block extrastyles %}
+    <style>
+        #creation_sortie_form_Valider {
+            display: none;
+        }
+
+        #bouton {
+            display: flex;
+            justify-content: space-around;
+        }
+        button{
+
+            width: 140px;
+            height: 40px;
+        }
+    </style>
+{% endblock %}
 
 {% block body %}
     <h1>Edit Sortie</h1>
 
-    {{ include('sortie/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_sortie_index') }}">back to list</a>
 
-    {{ include('sortie/_delete_form.html.twig') }}
+    {# {{ include('sortie/_form.html.twig', {'button_label': 'Enregistrer'}) }} #}
+    <section>
+        {{ form_start(form) }}
+        {{ form_row(form.nom) }}
+        {{ form_row(form.dateHeureDebut) }}
+        {{ form_row(form.dateLimiteInscription) }}
+        {{ form_row(form.nbInscriptionsMax) }}
+        {{ form_row(form.duree) }}
+        {{ form_row(form.infosSortie) }}
+        {{ form_row(form.campus) }}
+        {{ form_row(form.lieu) }}
+        <div id="bouton">
+            <div>
+                <button type="submit">Enregistrer</button>
+            </div>
+
+            <div> {{ include('sortie/_delete_form.html.twig') }}</div>
+
+            <div><a href="{{ path('app_sortie_index') }}">
+                    <button type="button">Annuler</button>
+                </a></div>
+
+        </div>
+
+        {{ form_end(form) }}
+
+
+    </section>
+
 {% endblock %}
+
+

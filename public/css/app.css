@@ -8,6 +8,10 @@ body {
     font-family: 'Roboto', serif;
 }
 
+footer{
+    text-align: center;
+}
+
 .container {
     max-width: 1000px;
     margin: auto;

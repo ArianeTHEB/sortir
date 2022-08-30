@@ -24,12 +24,13 @@ class SortiesController extends AbstractController
     {
         //création d'une instance de sortie
         $user=$this->getUser();
-        $etat = $etatRepository->findById(['2']);
+        $etat = $etatRepository->findById(['2']);//super method hétitée qui permet de faire une recherche sur la colonne qu'on souhaite
         dump($etat[0]);
         $sortie = new Sortie();
         $sortie->setDateHeureDebut(new \DateTime('now'));
         $sortie->setDateLimiteInscription(new \DateTime('now'));
         $sortie->setEtat($etat[0]);
+
         $sortie->setOrganisateur($user);
       //  $sortie->setEtat()
         // $sortie->setDateCreated(new \DateTime());//attribut nécessaire pour envoi bdd mais retiré du form

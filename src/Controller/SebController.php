@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Participant;
 use App\Entity\Sortie;
 use App\Form\SebType;
 use App\Repository\SortieRepository;
@@ -15,6 +16,8 @@ class SebController extends AbstractController
     #[Route('/seb', name: 'app_seb')]
     public function index(Request $request, SortieRepository $sortieRepository): Response
     {
+        $moi = new Participant();
+        
         $sortie = new Sortie();
         $form = $this->createForm(SebType::class, $sortie);
         $form->handleRequest($request);
