@@ -16,9 +16,6 @@
         }
         #gauche{
             display: flex;
-            flex-direction: row;
-            alignment: left;
-            justify-content: left;
             border: solid;
 
         }
@@ -40,7 +37,8 @@
 
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             {{ form_start(registrationForm) }}
-            {{form_widget(registrationForm)}}
+            {{ form_widget(registrationForm) }}
+
 
 
             <button type="submit" class="btn">
@@ -52,10 +50,7 @@
             </button>
             {{ form_end(registrationForm) }}
         {% endif %}
-
-        <div id="droit">
-            vide intersidéral
-        </div>
+        
 
     </section>
 

@@ -44,7 +44,7 @@ class MainController extends AbstractController
      */
     public function profilAffichage(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, ParticipantAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
-        $user = new Participant();
+        $user = $this->getUser();
 
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
