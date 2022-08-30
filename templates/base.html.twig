@@ -1,57 +1,55 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>{% block title %}Sortir !{% endblock %}</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Sortir !{% endblock %}</title>
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@700&display=swap" rel="stylesheet">
-        {#ce fichier css permet de gommer les différences entre les navigateurs#}
-        <link rel="stylesheet" href="{{asset('css/normalize.css')}}">
-        <link rel="stylesheet" href="{{asset('css/app.css')}}">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@700&display=swap" rel="stylesheet">
+    {#ce fichier css permet de gommer les différences entre les navigateurs#}
+    <link rel="stylesheet" href="{{asset('css/normalize.css')}}">
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-        {% block extrastyles %}{% endblock %}
-
-
-    </head>
-
-
-    <body>
-
-
-    {#entete du site#}
-    <header>
-
-            <div>
-            <a href="{{ path('app_login') }}" title="Go back to homepage">
-                <img src="{{ asset('img/logo.jpg') }}" alt="Sortir.com Logo"></a>
-            </div>
-
-        {% include('include/nav.html.twig')%}
-
-    </header>
-
-    {#contenu principal de chaque page#}
-    <main>
-        <div>
-            {% block body %}
-
-
-
-            {% endblock %}
-        </div>
-    </main>
-
-
-    <footer>
-        <div>&copy;  Sortir  {{ "now"|date("Y") }} </div>
-    </footer>
+    {% block extrastyles %}{% endblock %}
     {% block javascripts %}
     {% endblock %}
-    </body>
+
+</head>
+
+
+<body>
+
+
+{#entete du site#}
+<header>
+
+    <div>
+        <a href="{{ path('app_login') }}" title="Go back to homepage">
+            <img src="{{ asset('img/logo.jpg') }}" alt="Sortir.com Logo"></a>
+    </div>
+
+    {% include('include/nav.html.twig')%}
+
+</header>
+
+{#contenu principal de chaque page#}
+<main>
+
+    {% block body %}
+
+    {% endblock %}
+
+</main>
+
+
+<footer>
+    <div>&copy;  Sortir  {{ "now"|date("Y") }} </div>
+</footer>
+
+</body>
 </html>

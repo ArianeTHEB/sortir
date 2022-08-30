@@ -8,19 +8,16 @@ use App\Entity\Ville;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SortieType extends AbstractType
-
+class SebType extends AbstractType
 {
-
-    public function buildForm(FormBuilderInterface $builder, array $options, Ville $ville= null): void
+    public function buildForm(FormBuilderInterface $builder, array $options, Ville $ville = null): void
     {
 
         $builder
@@ -42,28 +39,13 @@ class SortieType extends AbstractType
                 'placeholder' => '(choisir une ville)',
                 'required' => false
             ])
-            ->add('Valider', SubmitType::class)
- /*           ->add('etat')
-           ->add('campus')
-            ->add('organisateur')
-            ->add('lieu')
-            ->add('participants')*/
         ;
-
-        $formModifier = function(FormInterface $form, Ville $ville = null){
+        $formModifier2 = function(FormInterface $form, Ville $ville = null){
             //ternaire si le champ ville est vide alors je renvoi une liste de lieux vide, sinon je renvoi les lieux
             //déja enregistrés
             $lieux = null === $ville ? [] : $ville->getLieus();
             dump($lieux);
 
-  /*          $form -> add('lieu',EntityType::class,[
-               'class' => Lieu::class,
-                'choices' => $lieux,
-                'choice_label' => 'nom',
-                'placeholder' => 'Lieu (choisir une ville)',
-                'label' => 'Lieu',
-                'required' => false
-            ]); */
             $form -> add('lieu',EntityType::class,[
                 'class' => Lieu::class,
                 'choices' => $lieux,
@@ -78,11 +60,11 @@ class SortieType extends AbstractType
         };
         $builder->get('villes')->addEventListener(
             FormEvents::POST_SUBMIT,
-            function (FormEvent $event) use ($formModifier){
+            function (FormEvent $event) use ($formModifier2){
 
                 $villes= $event->getForm()->getData();
                 dump($villes);
-                $formModifier($event->getForm()->getParent(), $villes);
+                $formModifier2($event->getForm()->getParent(), $villes);
 
             }
         );
