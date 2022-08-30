@@ -58,6 +58,7 @@ class Participant implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 30)]
     private ?string $pseudo = null;
 
+
     public function __construct()
     {
         $this->sorties = new ArrayCollection();
@@ -290,4 +291,5 @@ class Participant implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
 }

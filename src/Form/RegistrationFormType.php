@@ -19,11 +19,12 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email')
             ->add('pseudo')
-            ->add('nom')
             ->add('prenom')
+            ->add('nom')
             ->add('telephone')
+            ->add('email')
+
             ->add('campus',EntityType::class,[
                 'class' => Campus::class,
                 'choice_label' => 'nom',
@@ -49,8 +50,8 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-        ])
-        ;
+        ]);
+
     }
 
     public function configureOptions(OptionsResolver $resolver)

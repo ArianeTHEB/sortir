@@ -50,7 +50,12 @@
             </button>
             {{ form_end(registrationForm) }}
         {% endif %}
-        
+
+        {% if is_granted('IS_ANONYMOUS')%}
+        Merci de vous connecter
+            <button> <a href="{{ path('app_login') }}" title="se connecter">Se Connecter</a></button>
+        {%endif%}
+
 
     </section>
 
