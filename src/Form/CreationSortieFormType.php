@@ -36,7 +36,6 @@ class CreationSortieFormType extends AbstractType
                 'class' => Lieu::class,
                 'choice_label' =>'nom'
             ])
-            ->add('Valider', SubmitType::class)
             ->add('etat', EntityType::class,[
                 'mapped' =>false,
                 'class' => Etat::class,
@@ -44,6 +43,7 @@ class CreationSortieFormType extends AbstractType
 
 
             ])
+            ->add('Valider', SubmitType::class)
         ;
     }
 

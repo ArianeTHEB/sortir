@@ -42,7 +42,7 @@ class SortieType extends AbstractType
                 'placeholder' => '(choisir une ville)',
                 'required' => false
             ])
-            ->add('Valider', SubmitType::class)
+    //        ->add('Valider', SubmitType::class)
  /*           ->add('etat')
            ->add('campus')
             ->add('organisateur')
@@ -56,14 +56,7 @@ class SortieType extends AbstractType
             $lieux = null === $ville ? [] : $ville->getLieus();
             dump($lieux);
 
-  /*          $form -> add('lieu',EntityType::class,[
-               'class' => Lieu::class,
-                'choices' => $lieux,
-                'choice_label' => 'nom',
-                'placeholder' => 'Lieu (choisir une ville)',
-                'label' => 'Lieu',
-                'required' => false
-            ]); */
+
             $form -> add('lieu',EntityType::class,[
                 'class' => Lieu::class,
                 'choices' => $lieux,

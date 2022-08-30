@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Etat;
 use App\Entity\Sortie;
 use App\Entity\Ville;
 use App\Form\CreationSortieFormType;
@@ -22,19 +23,26 @@ class SortiesController extends AbstractController
 
     {
         //création d'une instance de sortie
+        $user=$this->getUser();
+        $etat = $etatRepository->findById(['2']);
+        dump($etat[0]);
         $sortie = new Sortie();
+        $sortie->setDateHeureDebut(new \DateTime('now'));
+        $sortie->setDateLimiteInscription(new \DateTime('now'));
+        $sortie->setEtat($etat[0]);
+        $sortie->setOrganisateur($user);
       //  $sortie->setEtat()
         // $sortie->setDateCreated(new \DateTime());//attribut nécessaire pour envoi bdd mais retiré du form
         $sortieForm = $this->createForm(CreationSortieFormType::class, $sortie);
 
         $villes = $villeRepository->findAll();
-        dump($villes);
+        //dump($villes);
         $lieuForm = $this->createForm(LieuType::class);
 
 
-        dump($sortie);//permet de verifier si un objet est hydraté
+     //   dump($sortie);//permet de verifier si un objet est hydraté
         $sortieForm->handleRequest($request);
-        dump($sortie);//on voit a present que mon objet sortie à des arguments grace à handleRequest
+    //    dump($sortie);//on voit a present que mon objet sortie à des arguments grace à handleRequest
 
         if ($sortieForm->isSubmitted() && $sortieForm->isValid()) {
             $entityManager->persist($sortie);
