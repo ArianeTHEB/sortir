@@ -21,12 +21,17 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 class MainController extends AbstractController
 {
     /** * @Route("/sorties", name="main_list") */
-    public function connexion(SortieRepository $sortieRepository): Response
+    public function connexion(SortieRepository $sortieRepository, ParticipantRepository $participantRepository): Response
     {
        // $filtreListe= $this->createForm(ListeSortiesFormType::class);
+        $sorties =$sortieRepository->findAll();
+        $uneSortie =$sorties[0]->getId();
+
+
+
 
         //return $this->render('main/list.html.twig',['filtreListe'=>$filtreListe->createView()]);
-        return $this->render('main/list.html.twig',['sorties' => $sortieRepository->findAll()]);
+        return $this->render('main/list.html.twig',['sorties' => $sorties]);
 
     }
 

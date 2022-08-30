@@ -32,6 +32,7 @@ class SortiesController extends AbstractController
         $sortie->setEtat($etat[0]);
 
         $sortie->setOrganisateur($user);
+        $sortie->addParticipant($user);
       //  $sortie->setEtat()
         // $sortie->setDateCreated(new \DateTime());//attribut nécessaire pour envoi bdd mais retiré du form
         $sortieForm = $this->createForm(CreationSortieFormType::class, $sortie);
