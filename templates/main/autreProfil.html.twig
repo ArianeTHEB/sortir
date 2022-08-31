@@ -2,16 +2,49 @@
 
 {% block title %}{{ parent()}} |autreProfil {% endblock%}
 
+
+
+
+{% block extrastyles %}
+    <style>
+        h1{
+            text-align: center;
+        }
+        section {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            width: 100%;
+
+        }
+        p{
+            text-align: center;
+
+        }
+        #droit{
+
+        }
+    </style>
+{% endblock %}
+
+
+
 {% block body%}
 
+    <h1>{{ user2.pseudo }}</h1>
 
     <div>
-
-        <h1>{{ user2.pseudo }}</h1>
         <p>Prénom: {{ user2.prenom }}</p>
         <p>Nom: {{ user2.nom }}</p>
-        <p>Email: {{ user2.telephone}}</p>
-
-
+        <p>Téléphone: {{user2.telephone}}</p>
+        <p>Email: {{ user2.email }}</p>
     </div>
+
+    <p>
+    <button>
+        <a href="{{ path('main_list') }}" title="retour">
+            Retour</a>
+    </button>
+    </p>
+
 {% endblock %}
