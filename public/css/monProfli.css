@@ -1,0 +1,21 @@
+
+
+h1{
+    text-align: center;
+}
+section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+
+}
+
+p{
+    display: flex;
+    width: 7em;
+    height: 7em;
+    box-shadow:  0 0.6em 1.8em ;
+    object-fit: cover;
+
+}

@@ -2,39 +2,25 @@
 
 {% block title %}{{ parent()}} |Profil {% endblock%}
 
-{% block extrastyles %}
-    <style>
-        h1{
-            text-align: center;
-        }
-        section {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            width: 100%;
+{% block extrastyles%}
+    <link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
 
-        }
-        #gauche{
-            display: flex;
-            border: solid;
 
-        }
-        #droit{
-
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/monProfli.css') }}">
 {% endblock %}
-
 
 {% block body%}
 
     <h1>Mon Profil</h1>
 
     <section id="principale">
-        <div id="gauche">
+        <div>
             Ma photo de profil
-            <img src="{{ asset('img/photo profil.png') }}" alt="profil"></a>
         </div>
+          <p>
+              <img src="{{ asset('img/photo profil.png') }}" alt="profil">
+          </p>
+
 
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             {{ form_start(registrationForm) }}
