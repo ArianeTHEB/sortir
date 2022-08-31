@@ -25,6 +25,7 @@ class MainController extends AbstractController
        // $filtreListe= $this->createForm(ListeSortiesFormType::class);
         $sorties =$sortieRepository->findAll();
 
+
         //return $this->render('main/list.html.twig',['filtreListe'=>$filtreListe->createView()]);
         return $this->render('main/list.html.twig',['sorties' => $sorties]);
 
@@ -81,13 +82,14 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/autreProfil", name="main_autreProfil")
+     * @Route("/autreProfil/{id}", name="main_autreProfil")
      */
-    public function autreProfil (Request $request, EntityManagerInterface $entityManager): Response
+    public function autreProfil (int $id, Request $request, EntityManagerInterface $entityManager, ParticipantRepository $participantRepository): Response
     {
-        $user = $this->getUser();
 
-        return $this->render('main/autreProfil.html.twig');
+        $user2 = $participantRepository->findById($id);
+
+        return $this->render('main/autreProfil.html.twig', ['user2'=>$user2[0]]);
         }
 
 
