@@ -35,7 +35,8 @@ class RegistrationFormType extends AbstractType
                 }
             ])
             ->add('administrateur')
-            ->add('mot_de_passe', PasswordType::class, [
+            ->add('mot_de_passe', RepeatedType::class, [
+                'type' => PasswordType::class,
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
@@ -50,15 +51,7 @@ class RegistrationFormType extends AbstractType
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
-                ],])
-            ->add('password', RepeatedType::class, [
-                'type' => PasswordType::class,
-                'invalid_message' => 'The password fields must match.',
-                'options' => ['attr' => ['class' => 'password-field']],
-                'first_options'  => ['label' => 'nouveau mot de passe'],
-                'second_options' => ['label' => 'Confirmation'],
-            ]);
-
+                ],]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
