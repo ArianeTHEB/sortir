@@ -1,6 +1,6 @@
 body {
     padding: 15px;
-    background: linear-gradient(#fd7d01, #efef35);
+    background: linear-gradient(rgba(253, 125, 1, 0.62), #efef35);
     background-attachment: fixed;
     background-position: center center;
     background-size: cover;
