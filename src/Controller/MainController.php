@@ -80,6 +80,16 @@ class MainController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/autreProfil", name="main_autreProfil")
+     */
+    public function autreProfil (Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $user = $this->getUser();
+
+        return $this->render('main/autreProfil.html.twig');
+        }
+
 
 }
 
