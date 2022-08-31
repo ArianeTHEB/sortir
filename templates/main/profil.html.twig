@@ -42,11 +42,15 @@
 
 
             <button type="submit" class="btn">
+                <a href="{{path('app_sortie_index')}}" title="Enregistrer">
                 Enregistrer
+                </a>
             </button>
 
             <button type="reset" class="btn">
+                <a href="{{ path('app_login') }}" title="Annuler">
                 Annuler
+                </a>
             </button>
             {{ form_end(registrationForm) }}
         {% endif %}

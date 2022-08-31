@@ -5,6 +5,8 @@
 {% block body %}
     <h1>Sortie index</h1>
 
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
     <table class="table">
         <thead>
             <tr>
@@ -40,7 +42,15 @@
         {% endfor %}
         </tbody>
     </table>
+
+    {%endif%}
     <br>
+
+    {% if is_granted('IS_ANONYMOUS')%}
+        Merci de vous connecter
+        <button> <a href="{{ path('app_login') }}" title="se connecter">Se Connecter</a></button>
+    {%endif%}
+
 <div>
     <a href="{{ path('app_sortie_new') }}">Create new</a>
 </div>
