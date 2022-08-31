@@ -1,0 +1,64 @@
+
+#creer{
+    text-decoration: none;
+}
+#utilisateur{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-end;
+
+}
+table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border: 3px solid purple;
+    text-align: left;
+}
+thead th, tfoot th {
+    font-family: 'Rock Salt', cursive;
+    font-size: 0.8em;
+}
+thead{
+    background-color: #fd7d01;
+}
+
+thead th:nth-child(1) {
+    width: 20%;
+}
+
+thead th:nth-child(2) {
+    width: 10%;
+}
+
+thead th:nth-child(3) {
+    width: 8%;
+}
+
+thead th:nth-child(4) {
+    width: 8%;
+}
+thead th:nth-child(5) {
+    width: 6%;
+}
+thead th:nth-child(6) {
+    width: 6%;
+}
+thead th:nth-child(7) {
+    width: 8%;
+}
+thead th:nth-child(8) {
+    width: 20%;
+}
+
+th, td {
+    padding: 10px;
+    border-left: 3px solid purple;
+}
+tbody tr:nth-child(odd) {
+    background-color: rgb(215, 127, 43);
+}
+
+tbody tr:nth-child(even) {
+    background-color: #d99350;
+}

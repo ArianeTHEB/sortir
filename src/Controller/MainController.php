@@ -3,8 +3,7 @@
 namespace App\Controller;
 
 
-use App\Entity\Participant;
-use App\Form\ListeSortiesFormType;
+
 use App\Form\RegistrationFormType;
 use App\Repository\ParticipantRepository;
 use App\Repository\SortieRepository;
@@ -21,14 +20,10 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 class MainController extends AbstractController
 {
     /** * @Route("/sorties", name="main_list") */
-    public function connexion(SortieRepository $sortieRepository, ParticipantRepository $participantRepository): Response
+    public function connexion(SortieRepository $sortieRepository, ParticipantRepository $participantRepository, Request $request): Response
     {
        // $filtreListe= $this->createForm(ListeSortiesFormType::class);
         $sorties =$sortieRepository->findAll();
-        $uneSortie =$sorties[0]->getId();
-
-
-
 
         //return $this->render('main/list.html.twig',['filtreListe'=>$filtreListe->createView()]);
         return $this->render('main/list.html.twig',['sorties' => $sorties]);

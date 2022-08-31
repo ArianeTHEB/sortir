@@ -5,17 +5,10 @@ Accueil
 {% endblock %}
 
 {% block extrastyles%}
-    <style>
-        #creer{
-            text-decoration: none;
-        }
-        #utilisateur{
-            display: flex;
-            flex-direction: column;
-            align-content: flex-end;
-        }
-    </style>
+    <link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
 
+
+    <link rel="stylesheet" href="{{ asset('css/list.css') }}">
 {% endblock %}
 
 
@@ -52,14 +45,14 @@ Accueil
             <thead>
             <tr>
                 {#        <th>Id</th> #}
-                <th>Nom</th>
+                <th>Nom de la sortie</th>
                 <th>Date de la sortie </th>
                 <th>Clôture </th>
-                <th>NbInscriptionsMax </th>
+                <th>inscrits/places </th>
                 <th>Etat </th>
-                <th>Inscrits </th>
+                <th>tu en es?</th>
                 <th>Organisateur </th>
-                <th>actions </th>
+                <th>Actions </th>
             </tr>
             </thead>
             <tbody>
@@ -71,11 +64,11 @@ Accueil
                     <td>{{ sortie.dateLimiteInscription ? sortie.dateLimiteInscription|date('d-m-Y') : '' }}</td>
                     <td>{{ sortie.nbInscriptionsMax +10 }}</td>
                     <td>{{ sortie.etat.libelle }}</td>
-                    <td>sortie.participants</td>
+                    <td>??</td>
                     <td> {{sortie.organisateur.nom}} </td>
                     <td>
-                        <a href="{{ path('app_sortie_show', {'id': sortie.id}) }}">show</a>
-                        <a href="{{ path('app_sortie_edit', {'id': sortie.id}) }}">edit</a>
+                        <a href="{{ path('app_sortie_show', {'id': sortie.id}) }}">Afficher</a>
+                        <a href="{{ path('app_sortie_edit', {'id': sortie.id}) }}">Modifier</a>
                     </td>
                 </tr>
             {% else %}
