@@ -37,7 +37,9 @@
                 <img src="{{ asset('img/logosortircom.png') }}" alt="Sortir.com Logo"></a>
     </div>
 
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
     {% include('include/nav.html.twig') %}
+    {%endif%}
 
 </header>
 
