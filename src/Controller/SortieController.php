@@ -68,7 +68,7 @@ class SortieController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $sortieRepository->add($sortie, true);
 
-            return $this->redirectToRoute('app_sortie_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('main_list', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('sortie/edit.html.twig', [
@@ -84,6 +84,6 @@ class SortieController extends AbstractController
             $sortieRepository->remove($sortie, true);
         }
 
-        return $this->redirectToRoute('app_sortie_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('main_list', [], Response::HTTP_SEE_OTHER);
     }
 }

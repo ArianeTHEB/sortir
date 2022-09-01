@@ -44,11 +44,11 @@ body > .container {
 header img {
     height: 70px;
 }
-
+/*
 main {
     flex: 1;
 }
-
+*/
 nav ul {
     display: flex;
     flex-direction: row;

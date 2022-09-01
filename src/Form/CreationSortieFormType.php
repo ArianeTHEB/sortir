@@ -19,10 +19,10 @@ class CreationSortieFormType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('dateHeureDebut')
-            ->add('dateLimiteInscription')
+            ->add('dateHeureDebut',null,['widget' => 'single_text'])
+            ->add('dateLimiteInscription',null,['widget' => 'single_text'])
             ->add('nbInscriptionsMax')
-            ->add('duree')
+            ->add('duree',null,['widget' => 'single_text'])
             ->add('infosSortie')
             ->add('campus',EntityType::class,[
                 'class' => Campus::class,

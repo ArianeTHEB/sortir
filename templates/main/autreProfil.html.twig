@@ -19,10 +19,13 @@
         }
         p{
             text-align: center;
-
         }
-        #droit{
-
+        #a{
+            text-decoration: none;
+        }
+        button{
+            width: 80px;
+            height: 50px;
         }
     </style>
 {% endblock %}
@@ -32,17 +35,17 @@
 {% block body%}
 
     <h1>{{ user2.pseudo }}</h1>
-
+<section>
     <div>
         <p>Prénom: {{ user2.prenom }}</p>
         <p>Nom: {{ user2.nom }}</p>
         <p>Téléphone: {{user2.telephone}}</p>
         <p>Email: {{ user2.email }}</p>
     </div>
-
+</section>
     <p>
     <button>
-        <a href="{{ path('main_list') }}" title="retour">
+        <a href="{{ path('main_list') }}" title="retour" id="a">
             Retour</a>
     </button>
     </p>

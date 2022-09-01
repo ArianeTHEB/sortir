@@ -17,6 +17,10 @@
             width: 140px;
             height: 40px;
         }
+        #supprimer {
+            display: flex;
+            justify-content: center;
+        }
     </style>
 {% endblock %}
 
@@ -41,7 +45,7 @@
                 <button type="submit">Enregistrer</button>
             </div>
 
-            <div> {{ include('sortie/_delete_form.html.twig') }}</div>
+
 
             <div><a href="{{ path('main_list') }}">
                     <button type="button">Annuler</button>
@@ -51,6 +55,7 @@
 
         {{ form_end(form) }}
 
+        <div id="supprimer"> {{ include('sortie/_delete_form.html.twig') }}</div>
 
     </section>
 

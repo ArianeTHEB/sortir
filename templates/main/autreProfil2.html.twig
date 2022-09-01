@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block extrastyles %}
+    <style>
+        h1{
+            text-align: center;
+        }
+        section {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            width: 100%;
+
+        }
+        p{
+            text-align: center;
+
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <h1>Mon Profil</h1>
+
+    <section id="principale">
+        <div id="gauche">
+            Ma photo de profil
+
+        </div>
+
+     <div>
+         <p>Prénom: {{ user2.prenom }}</p>
+         <p>Nom: {{ user2.nom }}</p>
+         <p>Téléphone: {{user2.telephone}}</p>
+         <p>Email: {{ user2.email }}</p>
+     </div>
+
+
+
+
+
+            <button type="submit" class="btn">
+                <a title="Enregistrer">
+                    Enregistrer
+                </a>
+            </button>
+
+            <button type="reset" class="btn">
+                <a href="{{ path('app_login') }}" title="Annuler">
+                    Annuler
+                </a>
+            </button>
+            {{ form_end(registrationForm) }}
+        {% endif %}
+
+        {% if is_granted('IS_ANONYMOUS')%}
+            Merci de vous connecter
+            <button> <a href="{{ path('app_login') }}" title="se connecter">Se Connecter</a></button>
+        {%endif%}
+
+
+    </section>
+
+{% endblock %}
+
+
+
