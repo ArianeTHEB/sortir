@@ -1,21 +1,25 @@
-
-
 h1{
     text-align: center;
 }
-section {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
 
+.container{
+    display:grid;
+    height:100vh;
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:0.2fr 1fr;
+    grid-template-areas:"div main"
+    "div main"
 }
 
-p{
-    display: flex;
-    width: 7em;
-    height: 7em;
-    box-shadow:  0 0.6em 1.8em ;
-    object-fit: cover;
-
+div #profil{
+    grid-area : div #profil;
 }
+
+div #photo{
+    grid-area : div #photo;
+    alignment: top;
+}
+main{
+    grid-area : main;
+}
+

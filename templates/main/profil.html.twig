@@ -3,32 +3,30 @@
 {% block title %}{{ parent()}} |Profil {% endblock%}
 
 {% block extrastyles%}
-    <link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
-
-
-    <link rel="stylesheet" href="{{ asset('css/monProfli.css') }}">
+      <link rel="stylesheet" href="{{ asset('css/monProfli.css') }}">
 {% endblock %}
 
 {% block body%}
 
     <h1>Mon Profil</h1>
 
-    <section id="principale">
-        <div>
+    <main class="container">
+
+        <div id="profil">
             Ma photo de profil
         </div>
-          <p>
+
+          <div id="photo">
               <img src="{{ asset('img/photo profil.png') }}" alt="profil">
-          </p>
+          </div>
 
 
+
+        <main>
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
             {{ form_start(registrationForm) }}
             {{ form_widget(registrationForm) }}
-
-
-
-
 
             <button type="submit" class="btn">
                 <a title="Enregistrer">
@@ -48,10 +46,11 @@
         Merci de vous connecter
             <button> <a href="{{ path('app_login') }}" title="se connecter">Se Connecter</a></button>
         {%endif%}
+        </main>
 
 
-    </section>
 
+</div>
 
 
 
