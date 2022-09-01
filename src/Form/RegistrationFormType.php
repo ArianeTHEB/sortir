@@ -34,6 +34,11 @@ class RegistrationFormType extends AbstractType
                         ->orderBy('c.nom','ASC');
                 }
             ])
+  //        POUR UPLOAD PHOTO
+  //          ->add('photo', FileType::class,
+  //              [ 'mapped' => false, // désactive le mappage avec le champ dans l'entité (qui attend une chaîne de caractère)
+  //              ]
+  //          )
             ->add('administrateur')
             ->add('mot_de_passe', RepeatedType::class, [
                 'type' => PasswordType::class,

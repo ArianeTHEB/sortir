@@ -27,8 +27,23 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
+
+            //POUR UPLOAD UNE PHOTO
+            // Récupèrer les informations du formulaire dans un objet $file
+           // $file = $form->get('photo')->getData();
+
+           // if ($file)
+           // {
+                // On renomme le fichier, selon une convention propre au projet
+                // Par exemple nom de l'entité + son id + extension soit 'entite-1.jpg'
+
+           //     $newFilename = $user->getNom()."-".$user->getId().".".$file->guessExtension();
+           // }
+           // $file->move($this->getParameter('upload_champ_entite_dir'), $newFilename);
+           // $user->setChamp($newFilename);
 
             $this->addFlash('success', 'votre compte a bien été créé');
             $user->setPassword(

@@ -17,7 +17,11 @@
         </div>
 
           <div id="photo">
-              <img src="{{ asset('img/photo profil.png') }}" alt="profil">
+              {#POUR UPLOAD PHOTO
+              {% if (objet.champ) %}
+                  <img src="{{ asset('images/' ~ objet.champ) }}">
+              {% endif %}#}
+             <img src="{{ asset('img/photo profil.png') }}" alt="profil">
           </div>
 
 
