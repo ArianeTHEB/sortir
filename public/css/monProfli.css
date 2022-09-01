@@ -13,13 +13,15 @@ h1{
 
 div #profil{
     grid-area : div #profil;
+    background-color: burlywood;
 }
 
 div #photo{
     grid-area : div #photo;
     alignment: top;
-}
+    }
 main{
     grid-area : main;
+
 }
 
