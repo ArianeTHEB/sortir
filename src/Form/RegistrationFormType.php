@@ -38,6 +38,7 @@ class RegistrationFormType extends AbstractType
   //              [ 'mapped' => false, // désactive le mappage avec le champ dans l'entité (qui attend une chaîne de caractère)
   //              ]
   //          )
+
             ->add('administrateur',null,[
                 'row_attr'=>['id'=>'admin', 'style'=>'display:none']
   ])
