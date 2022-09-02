@@ -48,8 +48,7 @@
                        autocomplete="current-password" required>
 
                 <input type="hidden" name="_csrf_token"
-                       value="{{ csrf_token('authenticate') }}"
-                >
+                       value="{{ csrf_token('authenticate') }}">
 
 
                 {# Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -72,6 +71,7 @@
                     Crée son profil
                 </a>
             </button>
+            <u> Mot de Passe oublié (inactif)</u>
         </div>
     </section>
 {% endblock %}
