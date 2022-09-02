@@ -4,6 +4,9 @@ namespace App\Controller;
 
 
 
+use App\Entity\Lieu;
+use App\Entity\Participant;
+use App\Entity\Sortie;
 use App\Form\RegistrationFormType;
 use App\Repository\ParticipantRepository;
 use App\Repository\SortieRepository;
@@ -25,6 +28,10 @@ class MainController extends AbstractController
        // $filtreListe= $this->createForm(ListeSortiesFormType::class);
         $sorties =$sortieRepository->findAll();
 
+
+       // $s= $request->request->get('app.user.sorties');
+        $participant= new Participant($this->getUser());
+       // dump($s);
 
         //return $this->render('main/list.html.twig',['filtreListe'=>$filtreListe->createView()]);
         return $this->render('main/list.html.twig',['sorties' => $sorties]);

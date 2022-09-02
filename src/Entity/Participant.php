@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ParticipantRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
@@ -20,6 +21,7 @@ class Participant implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\Email(message: "Votre eMail n'a pas un format valide")]
     private ?string $email = null;
 
     #[ORM\Column]
@@ -29,15 +31,19 @@ class Participant implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\Length(min: 6,minMessage: "6 caracteres minimum")]
     private ?string $password = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank]
     private ?string $nom = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank]
     private ?string $prenom = null;
 
     #[ORM\Column(length: 15, nullable: true)]
+    #[Assert\NotBlank]
     private ?string $telephone = null;
 
     #[ORM\Column]
@@ -56,6 +62,13 @@ class Participant implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $inscrit;
 
     #[ORM\Column(length: 30)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 1,
+        max: 30,
+        minMessage: 'Votre pseudo dois faire {{ limit }} caractere minimum',
+        maxMessage: 'votre pseudo ne dois pas dépasser {{ limit }} caracteres',
+    )]
     private ?string $pseudo = null;
 
 

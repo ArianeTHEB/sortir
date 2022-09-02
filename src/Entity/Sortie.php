@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SortieRepository::class)]
 class Sortie
@@ -17,21 +18,29 @@ class Sortie
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: "Merci de donner un nom a votre sortie")]
+    #[Assert\Length(min:2, max: 100,maxMessage: "maximum 100 caracteres", minMessage: "minimun 2 caracteres")]
     private ?string $nom = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\Range(min: 'now',minMessage: "La date de l'activité dois etre au minimum dans 2 heures")]
     private ?\DateTimeInterface $dateHeureDebut = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $duree = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\LessThan(propertyPath: 'dateHeureDebut',message: "La date limite d'inscription ne doit pas étre aprés la date de la sortie")]
     private ?\DateTimeInterface $dateLimiteInscription = null;
 
     #[ORM\Column]
+    #[Assert\Length(min:1, minMessage: "il faut au minimum un participant")]
+    #[Assert\Type(type: 'integer')]
+    #[Assert\GreaterThan(value: 0,message: "il doit y avoir au moins 1 inscription")]
     private ?int $nbInscriptionsMax = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message: "Décrivez votre sortie")]
     private ?string $infosSortie = null;
 
     #[ORM\ManyToOne(inversedBy: 'sorties')]
@@ -51,6 +60,7 @@ class Sortie
 
     #[ORM\ManyToMany(targetEntity: Participant::class, mappedBy: 'inscrit')]
     private Collection $participants;
+
 
     public function __construct()
     {
