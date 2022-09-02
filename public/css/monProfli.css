@@ -20,6 +20,7 @@ div #photo{
     grid-area : div #photo;
     alignment: top;
     }
+
 main{
     grid-area : main;
 
