@@ -4,9 +4,10 @@
 }
 #utilisateur{
     display: flex;
-    flex-direction: column;
-    align-content: flex-end;
-
+    flex-direction: row;
+    justify-content: flex-end;
+    text-align: left;
+    font-style: oblique;
 }
 table {
     table-layout: fixed;

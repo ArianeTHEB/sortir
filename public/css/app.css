@@ -44,6 +44,10 @@ body > .container {
 header img {
     height: 70px;
 }
+#header_pincipale{
+    display: flex;
+    justify-content: space-between;
+}
 /*
 main {
     flex: 1;

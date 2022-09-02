@@ -27,29 +27,30 @@
 
 {# entete du site #}
 <header>
-
-    <div>
-        {% if app.user %}
-        <a href="{{ path('main_list') }}" title="retour à l'accueil">
+    <div id="header_pincipale">
+        <div>
+            {% if app.user %}
+            <a href="{{ path('main_list') }}" title="retour à l'accueil">
 
                 {% endif %}
 
                 <img src="{{ asset('img/logosortircom.png') }}" alt="Sortir.com Logo"></a>
+        </div>
+        <div>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                {% include('include/nav.html.twig') %}
+            {% endif %}
+        </div>
     </div>
-
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-    {% include('include/nav.html.twig') %}
-    {%endif%}
-
 </header>
 
-{% for label, messages in app.flashes%}
+{% for label, messages in app.flashes %}
     {% for message in messages %}
         <div class="alert-{{ label }}">
-        {{ message }}
+            {{ message }}
         </div>
-    {% endfor%}
-{% endfor%}
+    {% endfor %}
+{% endfor %}
 
 {# contenu principal de chaque page #}
 <main>

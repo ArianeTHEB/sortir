@@ -1,84 +1,87 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ parent()}} | Accueil
+    {{ parent() }} | Accueil
 {% endblock %}
 
-{% block extrastyles%}
+{% block extrastyles %}
     <link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
 
 
     <link rel="stylesheet" href="{{ asset('css/list.css') }}">
+
 {% endblock %}
 
 
 {% block body %}
     <div id="utilisateur">
 
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <div>
-            <p>Date du jour : {{ "now" | date("d/m/Y")}}</p>
-            <p> Participant : {{app.user.prenom | capitalize}} {{app.user.nom | capitalize | first}}.</p>
-            </div>
-        {% endif %}
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <div id="date">
+                    <p>Date du jour : {{ "now" | date("d/m/Y") }}</p>
+                    <p> Participant : {{ app.user.prenom | capitalize }} {{ app.user.nom | capitalize | first }}.</p>
+                </div>
+            {% endif %}
 
     </div>
 
     <h3>Filtrer les sorties</h3>
 
- {#   {{ form_start(filtreListe) }}
+    {#   {{ form_start(filtreListe) }}
 
     {{ form_widget(filtreListe) }}
 
-    {{ form_end(filtreListe) }}#}
+    {{ form_end(filtreListe) }} #}
     <br>
 
 
 
-        <table class="table">
-            <thead>
+    <table class="table">
+        <thead>
+        <tr>
+            {#        <th>Id</th> #}
+            <th>Nom de la sortie</th>
+            <th>Date de la sortie</th>
+            <th>Clôture</th>
+            <th>inscrits/places</th>
+            <th>Etat</th>
+            <th>tu en es?</th>
+            <th>Organisateur</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for sortie in sorties %}
             <tr>
-                {#        <th>Id</th> #}
-                <th>Nom de la sortie</th>
-                <th>Date de la sortie </th>
-                <th>Clôture </th>
-                <th>inscrits/places </th>
-                <th>Etat </th>
-                <th>tu en es?</th>
-                <th>Organisateur </th>
-                <th>Actions </th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for sortie in sorties %}
-                <tr>
 
-                    <td>{{ sortie.nom }}</td>
-                    <td>{{ sortie.dateHeureDebut ? sortie.dateHeureDebut|date('d-m-Y H:i') : '' }}</td>
-                    <td>{{ sortie.dateLimiteInscription ? sortie.dateLimiteInscription|date('d-m-Y') : '' }}</td>
-                    <td>{{ sortie.nbInscriptionsMax }}</td>
-                    <td>{{ sortie.etat.libelle }}</td>
-                    <td>MM</td>
-                    <td><a href="{{ path('main_autreProfil',{'id' : sortie.organisateur.id}) }}">{{sortie.organisateur.nom }} </a></td>
-                    <td>
-                        <a href="{{ path('app_sortie_show', {'id': sortie.id}) }}">Afficher</a>
-                        {% if sortie.organisateur.id is same as(app.user.id) %}
+                <td>{{ sortie.nom }}</td>
+                <td>{{ sortie.dateHeureDebut ? sortie.dateHeureDebut|date('d-m-Y H:i') : '' }}</td>
+                <td>{{ sortie.dateLimiteInscription ? sortie.dateLimiteInscription|date('d-m-Y') : '' }}</td>
+                <td>{{ sortie.nbInscriptionsMax }}</td>
+                <td>{{ sortie.etat.libelle }}</td>
+                <td>MM</td>
+                <td>
+                    <a href="{{ path('main_autreProfil',{'id' : sortie.organisateur.id}) }}">{{ sortie.organisateur.nom }} </a>
+                </td>
+                <td>
+                    <a href="{{ path('app_sortie_show', {'id': sortie.id}) }}">Afficher</a>
+                    {% if sortie.organisateur.id is same as(app.user.id) %}
                         <a href="{{ path('app_sortie_edit', {'id': sortie.id}) }}">Modifier</a>
-                        {% endif%}
-                    </td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="8">no records found</td>
-                </tr>
-            {% endfor %}
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
 
-            </tbody>
-        </table>
-        <br>
+        </tbody>
+    </table>
+    <br>
 
 
-     <button> <a href="{{ path('creer_sorties') }}" title="Creer une sortie" id="creer">Creer une sortie</a></button>
+    <button><a href="{{ path('creer_sorties') }}" title="Creer une sortie" id="creer">Creer une sortie</a></button>
 
 {% endblock %}
 
