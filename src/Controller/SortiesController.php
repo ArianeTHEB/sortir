@@ -2,12 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\Etat;
+
 use App\Entity\Sortie;
-use App\Entity\Ville;
 use App\Form\CreationSortieFormType;
 use App\Form\LieuType;
-
 use App\Repository\EtatRepository;
 use App\Repository\VilleRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,7 +23,7 @@ class SortiesController extends AbstractController
         //création d'une instance de sortie
         $user=$this->getUser();
         $etat = $etatRepository->findById(['2']);//super method hétitée qui permet de faire une recherche sur la colonne qu'on souhaite
-        dump($etat[0]);
+
         $sortie = new Sortie();
         $sortie->setDateHeureDebut(new \DateTime('now'));
         $sortie->setDateLimiteInscription(new \DateTime('now'));
@@ -33,12 +31,11 @@ class SortiesController extends AbstractController
 
         $sortie->setOrganisateur($user);
         $sortie->addParticipant($user);
-      //  $sortie->setEtat()
-        // $sortie->setDateCreated(new \DateTime());//attribut nécessaire pour envoi bdd mais retiré du form
+
         $sortieForm = $this->createForm(CreationSortieFormType::class, $sortie);
 
         $villes = $villeRepository->findAll();
-        //dump($villes);
+
         $lieuForm = $this->createForm(LieuType::class);
 
 
@@ -60,8 +57,7 @@ class SortiesController extends AbstractController
         //passage à twig pour déclencher l'affichage du formulaire
         return $this->render('sorties/creerSortie.html.twig', [
             'sortieForm' => $sortieForm->createView(),
-       //     'villes' => $villes,
-       //     'lieuform' => $lieuForm->createView()
+
         ]);
     }
 

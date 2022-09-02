@@ -2,14 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Lieu;
+
 use App\Entity\Sortie;
 use App\Form\CreationSortieFormType;
-use App\Form\LieuType;
 use App\Form\SortieType;
-use App\Repository\LieuRepository;
 use App\Repository\SortieRepository;
-use App\Repository\VilleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

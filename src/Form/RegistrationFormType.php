@@ -7,8 +7,6 @@ use App\Entity\Participant;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -40,7 +38,9 @@ class RegistrationFormType extends AbstractType
   //              [ 'mapped' => false, // désactive le mappage avec le champ dans l'entité (qui attend une chaîne de caractère)
   //              ]
   //          )
-            ->add('administrateur')
+            ->add('administrateur',null,[
+                'row_attr'=>['id'=>'admin', 'style'=>'display:none']
+  ])
             ->add('mot_de_passe', RepeatedType::class, [
                 'type' => PasswordType::class,
                 // instead of being set onto the object directly,

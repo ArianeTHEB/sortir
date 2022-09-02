@@ -25,15 +25,11 @@ class MainController extends AbstractController
     /** * @Route("/sorties", name="main_list") */
     public function connexion(SortieRepository $sortieRepository, ParticipantRepository $participantRepository, Request $request): Response
     {
-       // $filtreListe= $this->createForm(ListeSortiesFormType::class);
+
         $sorties =$sortieRepository->findAll();
 
 
-       // $s= $request->request->get('app.user.sorties');
-        $participant= new Participant($this->getUser());
-       // dump($s);
 
-        //return $this->render('main/list.html.twig',['filtreListe'=>$filtreListe->createView()]);
         return $this->render('main/list.html.twig',['sorties' => $sorties]);
 
     }
@@ -94,7 +90,7 @@ class MainController extends AbstractController
 
 
 
-//LES COMMENTAIRES CI-DESSOUS SONT DIFFERENTS ESSAIS POUR L AFFICHAGE DU PROFIL : TOUS CES ESSAIS N OONT PAS ABOUTI
+//LES COMMENTAIRES CI-DESSOUS SONT DIFFERENTS ESSAIS POUR L AFFICHAGE DU PROFIL : TOUS CES ESSAIS N ONT PAS ABOUTI
 // {
 // usually you'll want to make sure the user is authenticated first,
 // see "Authorization" below
